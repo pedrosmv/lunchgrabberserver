@@ -1,4 +1,4 @@
-package location
+package main
 
 /*Location is the struct that will receive the values from a JSON to be stored
 in the DB*/

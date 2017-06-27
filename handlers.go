@@ -2,14 +2,12 @@
 due to the behaviour of HandleFunc method, it doesn't accept a function with
 the w http.ResponseWriter, r *http.Request arguments, so they are encapsulated
 by the wrapper that provides the mongo session */
-package handlers
+package main
 
 import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-
-	"github.com/lunchgrabberserver/location"
 
 	"goji.io/pat"
 	mgo "gopkg.in/mgo.v2"
@@ -22,7 +20,7 @@ func CreateWrapper(s *mgo.Session) func(w http.ResponseWriter, r *http.Request) 
 		session := s.Copy()
 		defer session.Close()
 
-		location := location.Location{}
+		location := Location{}
 
 		decoder := json.NewDecoder(r.Body)
 		err := decoder.Decode(&location)
@@ -55,7 +53,7 @@ func ReadWrapper(s *mgo.Session) func(w http.ResponseWriter, r *http.Request) {
 
 		context := session.DB("store").C("locations")
 
-		location := location.Location{}
+		location := Location{}
 
 		// err := context.Find(bson.M{"id": id}).One(&location)
 		err := context.Find(bson.M{"id": id}).One(&location)
@@ -80,7 +78,7 @@ func UpdateWrapper(s *mgo.Session) func(w http.ResponseWriter, r *http.Request) 
 
 		id := pat.Param(r, "id")
 
-		location := location.Location{}
+		location := Location{}
 
 		decoder := json.NewDecoder(r.Body)
 		err := decoder.Decode(&location)
@@ -124,7 +122,7 @@ func FetchAll(s *mgo.Session) func(w http.ResponseWriter, r *http.Request) {
 
 		context := session.DB("store").C("locations")
 
-		location := []location.Location{}
+		location := []Location{}
 
 		err := context.Find(bson.M{"city": city}).All(&location)
 		if err != nil {
