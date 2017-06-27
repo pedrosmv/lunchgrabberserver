@@ -15,6 +15,8 @@ import (
 	mgo "gopkg.in/mgo.v2"
 )
 
+var MONGOLAB_URL = "mongodb://<pedrosmv>:<esqwilo28>@ds139242.mlab.com:39242/lunchgrabber"
+
 /*Index is a struct from the mongo package that groups settings for the DB. This
 function makes sure that all of them are true */
 func Index(s *mgo.Session) {
@@ -50,7 +52,7 @@ func GetPort() string {
 }
 
 func main() {
-	session, err := mgo.Dial("localhost")
+	session, err := mgo.Dial("MONGOLAB_URL")
 	if err != nil {
 		fmt.Println(err)
 	}
