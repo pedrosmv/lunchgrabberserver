@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/pedrosmv/lunchroulette/location"
+	"github.com/lunchgrabberserver/location"
 
 	"goji.io/pat"
 	mgo "gopkg.in/mgo.v2"

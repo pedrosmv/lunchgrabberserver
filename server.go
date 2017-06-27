@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/pedrosmv/lunchroulette/handlers"
+	"github.com/lunchgrabberserver/handlers"
 
 	"goji.io/pat"
 
@@ -46,6 +46,9 @@ func determineListenAddress() (string, error) {
 }
 
 func main() {
+
+	addr, err := determineListenAddress()
+
 	session, err := mgo.Dial("localhost")
 	if err != nil {
 		fmt.Println(err)
@@ -62,5 +65,5 @@ func main() {
 	multiplex.HandleFunc(pat.Put("/locations/:id"), handlers.UpdateWrapper(session))
 	multiplex.HandleFunc(pat.Delete("/locations/:id"), handlers.DeleteWrapper(session))
 	handler := cors.Default().Handler(multiplex)
-	http.ListenAndServe("localhost:8080", handler)
+	http.ListenAndServe(addr, handler)
 }
