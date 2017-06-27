@@ -7,8 +7,16 @@
 	],
 	"Deps": [
 		{
+			"ImportPath": "github.com/pedrosmv/lunchroulette/handlers",
+			"Rev": "e50e66e83a3068ebbef62ad7c7637aec0a86f5cf"
+		},
+		{
+			"ImportPath": "github.com/pedrosmv/lunchroulette/location",
+			"Rev": "e50e66e83a3068ebbef62ad7c7637aec0a86f5cf"
+		},
+		{
 			"ImportPath": "github.com/rs/cors",
-			"Comment": "v.1.1",
+			"Comment": "v1.0-5-g8dd4211",
 			"Rev": "8dd4211afb5d08dbb39a533b9bb9e4b486351df6"
 		},
 		{
