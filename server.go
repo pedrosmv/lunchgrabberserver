@@ -52,7 +52,7 @@ func GetPort() string {
 }
 
 func main() {
-	session, err := mgo.Dial("mongodb://pedrosmv:esqwilo28@ds139242.mlab.com:39242/lunchgrabber")
+	session, err := mgo.Dial("mongodb://pedrosmv:esqwilo28@lunchgrabber-shard-00-00-9uyv6.mongodb.net:27017,lunchgrabber-shard-00-01-9uyv6.mongodb.net:27017,lunchgrabber-shard-00-02-9uyv6.mongodb.net:27017/lunchgrabber?&replicaSet=lunchgrabber-shard-0&authSource=admin")
 	if err != nil {
 		fmt.Println(err)
 	}
